@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Elige tus Poderosos Tags de Superhéroes!</title>
+    <style>
+        /* --- Estilos Mejorados --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(to bottom, #6ab7ff, #fff);
+            color: #333;
+            animation: fadeInBackground 2s ease-in-out;
+        }
+        @keyframes fadeInBackground {
+            from { background-color: rgba(255, 255, 255, 0); }
+            to { background-color: #fff; }
+        }
+        h1 {
+            color: #ff6b81;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 2.5em;
+            animation: fadeIn 1s ease-in-out, pulse 2s infinite alternate;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.06); }
+        }
+        .detalle-categoria {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ffe082;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .detalle-categoria:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        h2 {
+            color: #880e4f;
+            text-align: center;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            font-size: 2em;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .lista-tags-detalle {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+        .item-tag-detalle {
+            background-color: #fff;
+            border: 2px solid #ffb74d;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .item-tag-detalle:hover {
+            transform: scale(1.04);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        .imagen-tag-detalle {
+            width: 120px;
+            height: 120px;
+            border: 3px solid #ff8a65;
+            margin-bottom: 15px;
+            background-color: #ffe0b2;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            color: #d84315;
+            font-weight: bold;
+            animation: rotate 2s infinite linear;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .precio-tag-detalle {
+            font-weight: bold;
+            color: #e65100;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        .whatsapp-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 1.1em;
+        }
+        .whatsapp-button:hover {
+            background-color: #388E3C;
+            transform: scale(1.08);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+        .whatsapp-button:active {
+            background-color: #2E7D32;
+            transform: scale(0.95);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .volver-inicio {
+            display: block;
+            margin-top: 40px;
+            text-align: center;
+            color: #9c27b0;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+        .volver-inicio:hover {
+            color: #7b1fa2;
+            text-shadow: 1px 1px 2px #9c27b0;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        let carrito = []; // Variable global para el carrito
+
+        function agregarAlCarrito(nombre, precio, categoria) {
+            carrito.push({ nombre: nombre, precio: precio, categoria: categoria });
+            alert(`"${nombre}" ha sido añadido al carrito. ¡Sigue comprando!`);
+        }
+
+        function generarPedidoWhatsApp() {
+            if (carrito.length === 0) {
+                alert("¡Tu carrito está vacío! Agrega algunos tags antes de continuar.");
+                return;
+            }
+
+            let mensaje = "¡Quiero hacer el siguiente pedido de Tags Asombrosos!\n\n";
+            let total = 0;
+
+            carrito.forEach(item => {
+                mensaje += `Categoría: ${item.categoria}\nNombre: ${item.nombre} - $${item.precio} MXN\n`;
+                total += parseFloat(item.precio);
+            });
+
+            mensaje += `\nTotal: $${total.toFixed(2)} MXN`;
+            mensaje = encodeURIComponent(mensaje);
+            const numeroWhatsApp = "529211384107";
+            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+            window.open(urlWhatsApp, '_blank');
+            carrito = [];
+        }
+    </script>
+</head>
+<div style="text-align:center; margin: 40px 0;">
+    <button class="whatsapp-button" onclick="generarPedidoWhatsApp()">Enviar pedido por WhatsApp</button>
+</div>
+
+<body>
+    <h1>¡Elige tus Poderosos Tags de Superhéroes!</h1>
+    <div class="detalle-categoria">
+        <h2>¡Conoce a los Héroes y Villanos Geniales!</h2>
+        <ul class="lista-tags-detalle">
+            <li class="item-tag-detalle">
+                <div class="imagen-tag-detalle">
+ <img src="sp.jpg" alt="Spider-Man" style="height: 150px; width: 150px; border-radius: 50%;">
+</div>
+                <div>Spider-Man</div>
+                <div class="precio-tag-detalle">$12.50 MXN</div>
+                <button class="whatsapp-button" onclick="agregarAlCarrito('Spider-Man', '12.50', 'Superhéroes')">¡Lo Quiero! (WhatsApp)</button>
+            </li>
+            <li class="item-tag-detalle">
+                <div class="imagen-tag-detalle">
+ <img src="b.jpg" alt="Batman" style="height: 150px; width: 150px; border-radius: 50%;">
+</div>                <div>Batman</div>
+                <div class="precio-tag-detalle">$14.00 MXN</div>
+                <button class="whatsapp-button" onclick="agregarAlCarrito('Batman', '14.00', 'Superhéroes')">¡Lo Quiero! (WhatsApp)</button>
+            </li>
+            <li class="item-tag-detalle">
+                <div class="imagen-tag-detalle">
+ <img src="im.jpg" alt="Iron Man" style="height: 150px; width: 150px; border-radius: 50%;">
+</div>
+                <div>Iron Man</div>
+                <div class="precio-tag-detalle">$15.00 MXN</div>
+                <button class="whatsapp-button" onclick="agregarAlCarrito('Iron Man', '15.00', 'Superhéroes')">¡Lo Quiero! (WhatsApp)</button>
+            </li>
+            <li class="item-tag-detalle">
+                <div class="imagen-tag-detalle">
+ <img src="ww.jpg" alt="Wonder Woman" style="height: 150px; width: 150px; border-radius: 50%;">
+</div>
+                <div>Wonder Woman</div>
+                <div class="precio-tag-detalle">$13.50 MXN</div>
+                <button class="whatsapp-button" onclick="agregarAlCarrito('Wonder Woman', '13.50', 'Superhéroes')">¡Lo Quiero! (WhatsApp)</button>
+            </li>
+            <li class="item-tag-detalle">
+                <div class="imagen-tag-detalle">
+ <img src="jk.jpg" alt="The Joker" style="height: 150px; width: 150px; border-radius: 50%;">
+</div>
+                <div>The Joker</div>
+                <div class="precio-tag-detalle">$11.50 MXN</div>
+                <button class="whatsapp-button" onclick="agregarAlCarrito('The Joker', '11.50', 'Superhéroes')">¡Lo Quiero! (WhatsApp)</button>
+            </li>
+        </ul>
+    </div>
+    <a href="index.html" class="volver-inicio">¡Volver al Mundo de los Tags!</a>
+<div style="text-align:center; margin: 40px 0;">
+    <button class="whatsapp-button" onclick="generarPedidoWhatsApp()">Enviar pedido por WhatsApp</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Carrito de Tags</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            margin: 20px;
+            background-color: #f8f8f8;
+            color: #555;
+        }
+        h1 {
+            color: #ff4081;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px #f8bbd0;
+        }
+        #carrito-items {
+            list-style: none;
+            padding: 0;
+        }
+        .carrito-item {
+            background-color: #fff;
+            border: 2px solid #ffab91;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        #vaciar-carrito {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #dc3545;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        #vaciar-carrito:hover {
+            text-decoration: underline;
+        }
+        #pagar-carrito {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        #pagar-carrito:hover {
+            background-color: #f57c00;
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        }
+        #seguir-comprando {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        #seguir-comprando:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tu Carrito de Tags</h1>
+
+    <ul id="carrito-items">
+        </ul>
+
+    <a href="#" id="vaciar-carrito">Vaciar Carrito</a>
+    <a href="pago.html" id="pagar-carrito">Pagar Ahora</a>
+    <a href="index.html" id="seguir-comprando">Seguir Comprando</a>
+
+    <script>
+        // Esta es la parte de JavaScript (muy básica) para extraer los items de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const items = urlParams.getAll('item'); // Obtiene todos los parámetros 'item'
+
+        const carritoItems = document.getElementById('carrito-items');
+
+        if (items.length > 0) {
+            items.forEach(item => {
+                const li = document.createElement('li');
+                li.classList.add('carrito-item');
+                li.textContent = item;
+                carritoItems.appendChild(li);
+            });
+        } else {
+            carritoItems.innerHTML = '<p>Tu carrito está vacío.</p>';
+        }
+
+        // Simula "vaciar" el carrito (recargando la página sin items)
+        document.getElementById('vaciar-carrito').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = window.location.pathname; // Recarga la página
+        });
+
+        // Modificamos el enlace para que pase los items del carrito a pago.html
+        document.getElementById('pagar-carrito').href = 'pago.html?' + urlParams.toString();
+    </script>
+</body>
+</html>
